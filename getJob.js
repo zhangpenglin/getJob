@@ -27,7 +27,7 @@ function getJob(qs,cb) {
 	request.get({
 		url, qs
 	}, (err, res, body) => {
-		if(err) return;
+		if (err) cb(err);
 		let data = JSON.parse(body);
 		let jobs = data.data.data.disp_data;
 		jobs.forEach((job) => {
@@ -36,7 +36,7 @@ function getJob(qs,cb) {
 			} = job
 			console.log(name + " " + officialname + " " + salary);
 		})
-		cb()
+		cb(null,jobs)
 	})
 }
 
